@@ -1,0 +1,49 @@
+<div class="progress-bar">
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoadingResults"></mat-progress-bar>
+</div>
+
+<div class="container" *ngIf="!post; else forminfo" novalidate>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+    <h4 style="text-align: center;">Cadastro de novo usuário</h4>
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+        {{ getErrorEmail() }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Nome Completo" formControlName="name">
+      <mat-error *ngIf="!name.valid && name.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="CPF" formControlName="cpf" mask="000.000.000-00">
+      <mat-error *ngIf="!formGroup.controls['cpf'].valid && formGroup.controls['cpf'].touched">
+        Campo de preenchimento obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="form-element">
+      <input type="password" matInput placeholder="Senha" formControlName="password">
+      <mat-hint>Utilize caracteres alfanuméricas, letras maiúsculas e minúsculas, números e símbolos. Mínimo de 8 caracteres</mat-hint>
+      <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+        {{ getErrorPassword() }}
+      </mat-error>
+    </mat-form-field> -->
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button"
+        [disabled]="!formGroup.valid || isLoadingResults">Enviar</button>
+    </div>
+
+  </form>
+</div>
+
+<ng-template #forminfo>
+  <div class="container">
+    <!-- {{ post | json }} -->
+  </div>
+</ng-template>

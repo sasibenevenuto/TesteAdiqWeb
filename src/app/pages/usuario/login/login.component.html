@@ -1,0 +1,35 @@
+<mat-card>
+  <div class="progress-bar">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoadingResults"></mat-progress-bar>
+  </div>
+  <mat-card-title>Login (Email)</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form">
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Usuário" formControlName="username">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Senha" formControlName="password">
+        </mat-form-field>
+      </p>
+
+      <p *ngIf="error" class="error">
+        {{ error }}
+      </p>
+
+      <div class="button">
+        <button type="submit" mat-button>Entrar</button>
+      </div>
+      <div class="button">
+        <button type="button" mat-button (click)="resetSenha()">Esqueci minha senha</button>
+      </div>
+      <div class="button">
+        <button type="button" mat-button routerLink="/cadastroDeUsuario">Cadastre-se</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

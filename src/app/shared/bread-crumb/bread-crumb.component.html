@@ -1,0 +1,20 @@
+<nav class="mb-4">
+  <ol class="breadcrumb row">
+    <li class="breadcrumb-item col-md-1" style="text-align: right">
+      <a routerLink="/" style="margin-left:50%;">Home</a>
+    </li>
+    <li *ngFor="let item of itens" class="breadcrumb-item col-md-7 text-left" [class.active]="isTheLastItem(item)">
+      <a *ngIf="!isTheLastItem(item)" [routerLink]="item.link">
+        {{item.text}}
+      </a>
+      <span *ngIf="isTheLastItem(item)">
+        {{item.text}}
+      </span>
+    </li>
+    <li style="margin-right: 0 auto;text-align: right;" class="col-md-4">Usuário: {{usuario}}
+      <!-- <button style="margin-left:10px;cursor: pointer;" mat-mini-fab disabled aria-label="Sair" (click)="sair()">
+        
+      </button> -->
+      <a style="margin-left:10px;cursor: pointer;" title="Sair" (click)="sair()" target="_blank"><mat-icon svgIcon="sair" aria-hidden="false" aria-label="Sair" ></mat-icon></a></li>  
+  </ol>
+</nav>
